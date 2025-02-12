@@ -22,6 +22,7 @@ describe("createBoard", () => {
 });
 
 export function isSafe(board: string[][], row: number, col: number, n: number): boolean {
+  if(board[row][col] === "#") return false;
   return true;
 }
 
