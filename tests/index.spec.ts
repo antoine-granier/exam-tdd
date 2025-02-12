@@ -9,6 +9,10 @@ export function createBoard(n: number): string[][] {
 }
 
 describe("createBoard", () => {
+  it("Throw an error if n is less than 1", () => {
+    expect(() => createBoard(0)).toThrowError();
+  });
+  
   it("Create a N*N board filled with 'O'", () => {
     const board = createBoard(4);
     console.log(board);
