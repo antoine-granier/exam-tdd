@@ -28,6 +28,18 @@ export function isSafe(board: string[][], row: number, col: number, n: number): 
     if (board[row][i] === "#") return false;
     if (board[i][col] === "#") return false;
   }
+  for(let i = row, j = col; i >= 0 && j >= 0; i--, j--) {
+    if(board[i][j] === "#") return false;
+  }
+  for(let i = row, j = col; i < n && j < n; i++, j++) {
+    if(board[i][j] === "#") return false;
+  }
+  for(let i = row, j = col; i >= 0 && j < n; i--, j++) {
+    if(board[i][j] === "#") return false;
+  }
+  for(let i = row, j = col; i < n && j >= 0; i++, j--) {
+    if(board[i][j] === "#") return false;
+  }
   return true;
 }
 
@@ -46,6 +58,7 @@ describe("isSafe", () => {
     expect(isSafe(board, 0, 1, 4)).toBe(false);
     expect(isSafe(board, 1, 0, 4)).toBe(false);
     expect(isSafe(board, 0, 0, 4)).toBe(false);
-    expect(isSafe(board, 2, 0, 4)).toBe(true);
+    expect(isSafe(board, 2, 0, 4)).toBe(false);
+    expect(isSafe(board, 2, 3, 4)).toBe(true);
   });
 });
