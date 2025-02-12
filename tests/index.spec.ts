@@ -4,11 +4,7 @@ export function createBoard(n: number): string[][] {
   if (n < 1) {
     throw new Error("n must be greater than 0");
   }
-  let res = [];
-  for (let i = 0; i < n; i++) {
-    res.push(new Array(n).fill("O"));
-  }
-  return res;
+  return Array.from({ length: n }, () => Array.from({ length: n }, () => "O"));
 }
 
 describe("createBoard", () => {
