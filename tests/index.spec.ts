@@ -1,3 +1,4 @@
+import exp from "constants";
 import { describe, it, expect } from "vitest";
 
 export function createBoard(n: number): string[][] {
@@ -32,5 +33,15 @@ describe("isSafe", () => {
     board[0][1] = "#";
     console.log(board);
     expect(isSafe(board, 0, 1, 4)).toBe(false);
+  });
+
+  it("Verify if position is safe", () => {
+    let board = createBoard(4);
+    board[1][1] = "#";
+    console.log(board);
+    expect(isSafe(board, 0, 1, 4)).toBe(false);
+    expect(isSafe(board, 1, 0, 4)).toBe(false);
+    expect(isSafe(board, 0, 0, 4)).toBe(false);
+    expect(isSafe(board, 2, 0, 4)).toBe(true);
   });
 });
