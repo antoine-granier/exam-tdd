@@ -90,3 +90,19 @@ describe("solveNQueens", () => {
     expect(solutions[0].length).toBe(4);
   });
 });
+
+export function isValidSingleAttack(board: string[][], n: number): boolean {
+  return false;
+}
+
+describe("isValidSingleAttack", () => {
+  it("Have to detect a valid configuration", () => {
+    const board = [
+      ["O", "#", "O", "O"],
+      ["O", "O", "O", "#"],
+      ["#", "O", "O", "O"],
+      ["O", "O", "#", "O"]
+    ];
+    expect(isValidSingleAttack(board, 4)).toBe(true);
+  });
+});
