@@ -1,4 +1,3 @@
-import exp from "constants";
 import { describe, it, expect } from "vitest";
 
 export function createBoard(n: number): string[][] {
@@ -23,23 +22,20 @@ describe("createBoard", () => {
 });
 
 export function isSafe(board: string[][], row: number, col: number, n: number): boolean {
-  if(board[row][col] === "#") return false;
+  if (board[row][col] === "#") return false;
+
   for (let i = 0; i < n; i++) {
-    if (board[row][i] === "#") return false;
-    if (board[i][col] === "#") return false;
+    if (board[row][i] === "#" || board[i][col] === "#") return false;
   }
-  for(let i = row, j = col; i >= 0 && j >= 0; i--, j--) {
-    if(board[i][j] === "#") return false;
+
+  const directions = [[-1, -1], [1, 1], [-1, 1], [1, -1]];
+
+  for (const [dirX, dirY] of directions) {
+    for (let i = row, j = col; i >= 0 && i < n && j >= 0 && j < n; i += dirX, j += dirY) {
+      if (board[i][j] === "#") return false;
+    }
   }
-  for(let i = row, j = col; i < n && j < n; i++, j++) {
-    if(board[i][j] === "#") return false;
-  }
-  for(let i = row, j = col; i >= 0 && j < n; i--, j++) {
-    if(board[i][j] === "#") return false;
-  }
-  for(let i = row, j = col; i < n && j >= 0; i++, j--) {
-    if(board[i][j] === "#") return false;
-  }
+
   return true;
 }
 
