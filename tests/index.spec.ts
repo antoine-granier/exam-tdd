@@ -63,12 +63,29 @@ export function solveNQueens(n: number): string[][] {
   const results: string[][] = [];
   const board = createBoard(n);
 
+  function solve(row: number): void {
+    if (row === n) {
+      results.push(board.map(row => row.join("")));
+      return;
+    }
+    for (let col = 0; col < n; col++) {
+      if (isSafe(board, row, col, n)) {
+        board[row][col] = "#";
+        solve(row + 1);
+        board[row][col] = "O";
+      }
+    }
+  }
+
+  solve(0);
+
   return results;
 }
 
 describe("solveNQueens", () => {
   it("Have to return all solution for n=4", () => {
     const solutions = solveNQueens(4);
+    console.log(solutions);
     expect(solutions.length).toBeGreaterThan(0);
     expect(solutions[0].length).toBe(4);
   });
