@@ -58,3 +58,18 @@ describe("isSafe", () => {
     expect(isSafe(board, 2, 3, 4)).toBe(true);
   });
 });
+
+export function solveNQueens(n: number): string[][] {
+  const results: string[][] = [];
+  const board = createBoard(n);
+
+  return results;
+}
+
+describe("solveNQueens", () => {
+  it("Have to return all solution for n=4", () => {
+    const solutions = solveNQueens(4);
+    expect(solutions.length).toBeGreaterThan(0);
+    expect(solutions[0].length).toBe(4);
+  });
+});
