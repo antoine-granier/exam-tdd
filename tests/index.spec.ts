@@ -92,7 +92,28 @@ describe("solveNQueens", () => {
 });
 
 export function isValidSingleAttack(board: string[][], n: number): boolean {
-  return false;
+  const directions = [[0, 1], [0, -1], [1, 0], [-1, 0], [1, 1], [1, -1], [-1, 1], [-1, -1]];
+
+  let attackCount = new Map<string, number>();
+
+  for (let i = 0; i < n; i++) {
+    for (let j = 0; j < n; j++) {
+      if (board[i][j] === "#") {
+        for (const [dirX, dirY] of directions) {
+          let x = i + dirX, y = j + dirY;
+          while (x >= 0 && x < n && y >= 0 && y < n) {
+            if (board[x][y] === "#") {
+              attackCount.set(`${i},${j}`, (attackCount.get(`${i},${j}`) || 0) + 1);
+              break;
+            }
+            x += dirX;
+            y += dirY;
+          }
+        }
+      }
+    }
+  }
+  return Array.from(attackCount.values()).every(value => value === 1);
 }
 
 describe("isValidSingleAttack", () => {
