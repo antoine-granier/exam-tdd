@@ -20,3 +20,16 @@ describe("createBoard", () => {
     expect(board.flat().every(cell => cell === "O")).toBe(true);
   });
 });
+
+export function isSafe(board: string[][], row: number, col: number, n: number): boolean {
+  return true;
+}
+
+describe("isSafe", () => {
+  it("Verify that Queen position is unsafe", () => {
+    let board = createBoard(4);
+    board[0][1] = "#";
+    console.log(board);
+    expect(isSafe(board, 0, 1, 4)).toBe(false);
+  });
+});
